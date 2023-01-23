@@ -1,0 +1,102 @@
+[
+  {
+    "name": "Manufacturing",
+    "sector": [
+      {
+        "name": "Construction materials"
+      },
+      {
+        "name": "Electronics and Optics"
+      },
+      {
+        "name": "Food and Beverage",
+        "options": [
+          "Bakery & confectionery",
+          "Beverages",
+          "Fish &amp; fish products",
+          "Meat & meat products",
+          "Milk & diary products",
+          "Other",
+          "Sweets & snack food"
+        ]
+      },
+      {
+        "name": "Furniture",
+        "options": [
+          "Bathroom/sauna",
+          "Bedroom",
+          "Children’s room",
+          "Kitchen",
+          "Living room",
+          "Office",
+          "Other (Furniture)",
+          "Outdoor",
+          "Project furniture"
+        ]
+      },
+      {
+        "name": "Machinery",
+        "options": [
+          "Machinery components",
+          "Machinery equipment/tools",
+          "Manufacture of machinery",
+          "Maritime",
+          "Living room",
+          "Office",
+          "Other (Furniture)",
+          "Outdoor",
+          "Project furniture"
+        ]
+      },
+      {
+        "name": "Metalworking"
+      },
+      {
+        "name": "Textile and Clothing"
+      },
+      {
+        "name": "Wood"
+      },
+      {
+        "name": "Textiles"
+      }
+    ]
+  },
+  {
+    "name": "Others",
+    "sector": [
+      {
+        "name": "Creative industries"
+      },
+      {
+        "name": "Energy technology"
+      },
+      {
+        "name": "Environment"
+      }
+    ]
+  },
+  {
+    "name": "Services",
+    "sector": [
+      {
+        "name": "Business services"
+      },
+      {
+        "name": "Engineering"
+      },
+      {
+        "name": "Information"
+      },
+      {
+        "name": "Tourism"
+      },
+      {
+        "name": "Translation services"
+      },
+      {
+        "name": "Transport and Logistics"
+      }
+    ]
+  }
+]
