@@ -4,8 +4,8 @@
 export const login = async (req, res) => {
     // save to session
     const { user } = req.session;
-    req.session.user = user !== undefined ? user : Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-    res.json({ message: "Logged in" });
+    req.session.user = !user ? Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) : user;
+    return res.json({ message: "Logged in" });
 
 }
 
@@ -13,5 +13,5 @@ export const login = async (req, res) => {
 // logout
 export const logout = async (req, res) => {
     req.session.destroy();
-    res.json({ message: "Logged out" });
+    return res.json({ message: "Logged out" });
 };
