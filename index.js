@@ -7,6 +7,8 @@ import cors from "cors";
 import expressSession from "express-session";
 import { addSector, getSector, updateSector } from "./controller/SectorController.js";
 import { login, logout } from "./controller/userController.js";
+import path from "path";
+const __dirname = path.resolve();
 
 
 dotenv.config();
@@ -88,6 +90,9 @@ const middleware = (req, res, next) => {
 
 // Routes
 // user routes\
+
+app.use(express.static(path.join(__dirname, 'client/build')));
+
 
 app.post('/user/login', login);
 app.get('/user/logout', logout);
