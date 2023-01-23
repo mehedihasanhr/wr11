@@ -91,7 +91,7 @@ const middleware = (req, res, next) => {
 // Routes
 // user routes\
 
-app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.post('/user/login', login);
