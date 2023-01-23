@@ -115,8 +115,6 @@ mongoose.connect(DB, {
 
 
 // Start the server
-app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
-});
+app.listen();
 
 
