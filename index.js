@@ -1,6 +1,5 @@
 import express from "express";
 import mongoose from "mongoose";
-import helmet from "helmet";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
@@ -48,12 +47,6 @@ const credential = (req, res, next) => {
     next();
 }
 
-
-
-
-
-
-app.use(helmet());
 // allow cors
 app.use(credential);
 app.use(cors(corOptions));
