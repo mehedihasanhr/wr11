@@ -74,7 +74,7 @@ const middleware = (req, res, next) => {
         req.header.user = req.session.user;
         next();
     } else {
-        res.status(400).json({ message: "Unauthorized" });
+        res.status(401).json({ message: "Unauthorized" });
     }
 }
 
@@ -101,13 +101,13 @@ mongoose.connect(DB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 }).then(() => {
-    console.log("Connected to MongoDB");
+    // Start the server
+    app.listen();
 }).catch((err) => {
     console.log(err);
 })
 
 
-// Start the server
-app.listen();
+
 
 
