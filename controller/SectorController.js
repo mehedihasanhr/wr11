@@ -20,7 +20,7 @@ export const addSector = async (req, res) => {
         await newSector.save();
         res.status(201).json(newSector);
     } catch (error) {
-        res.status(409).json({ message: error.message });
+        res.status(400).json({ message: error.message });
     }
 }
 

@@ -74,7 +74,7 @@ const middleware = (req, res, next) => {
         req.header.user = req.session.user;
         next();
     } else {
-        res.status(401).json({ message: "Unauthorized" });
+        res.status(400).json({ message: "Unauthorized" });
     }
 }
 
