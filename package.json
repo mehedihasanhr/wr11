@@ -6,8 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js",
-    "build": "ercel-sapper"
+    "dev": "nodemon index.js"
   },
   "dependencies": {
     "cookie-parser": "^1.4.6",
