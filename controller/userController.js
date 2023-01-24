@@ -15,9 +15,9 @@ export const login = async (req, res) => {
         }
 
         // 8 random characters
-        const user = Math.random().toString(36).substr(2, 8);
+        const user = await crypto.randomBytes(8).toString('hex');
 
-        res.cookie('__user', user, {
+        await res.cookie('__user', user, {
             httpOnly: true,
             secure: true,
             sameSite: 'none',
