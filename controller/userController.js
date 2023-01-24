@@ -15,10 +15,9 @@ export const login = async (req, res) => {
         }
 
         // 8 random characters
-        let user = Math.random().toString(36).substring(2, 10);
-        let token = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+        const user = Math.random().toString(36).substr(2, 8);
 
-        res.cookie('__user', { token, user }, {
+        res.cookie('__user', user, {
             httpOnly: true,
             secure: true,
             sameSite: 'none',
