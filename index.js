@@ -68,7 +68,7 @@ app.use(expressSession({
 const middleware = (req, res, next) => {
     // check if user is logged in
     // get user from cookie or session
-    console.log(req.session)
+    const { user } = req.session;
     if (user) {
         req.body = { ...req.body, uid: user };
         next();
@@ -103,6 +103,7 @@ mongoose.connect(DB, {
     useUnifiedTopology: true,
 }).then(() => {
     // Start the server
+    console.log("Connected to MongoDB");
     app.listen();
 }).catch((err) => {
     console.log(err);
