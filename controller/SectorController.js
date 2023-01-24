@@ -33,7 +33,7 @@ export const updateSector = async (req, res) => {
         return res.status(404).json({ message: "Sector not found" });
     }
 
-    console.log(req.header.user)
+
     try {
         const updatedSector = await Sector.findOneAndUpdate({ _id: id, uid: req.body.uid }, sector, { new: true });
         return res.status(200).json(updatedSector);
@@ -46,6 +46,9 @@ export const updateSector = async (req, res) => {
 
 export const getSector = async (req, res) => {
     try {
+        const uid = req.body;
+        if (!uid) return res.status(200).json({ message: "Please login" });
+
         const sectors = await Sector.findOne({
             uid: req.session.user
         });
