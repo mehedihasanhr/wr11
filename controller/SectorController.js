@@ -47,11 +47,10 @@ export const updateSector = async (req, res) => {
 export const getSector = async (req, res) => {
     try {
         const uid = req.body;
-        if (!uid) return res.status(200).json({ message: "Please login" });
+        console.log(uid)
+        if (!uid) return res.status(200);
 
-        const sectors = await Sector.findOne({
-            uid: req.session.user
-        });
+        const sectors = await Sector.findOne({ uid });
         if (!sectors) return res.status(200);
 
         return res.status(200).json(sectors);
