@@ -52,28 +52,29 @@ app.use(credential);
 app.use(cors(corOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser(process.env.SECRET));
 app.use(expressSession({
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
-    sessionAge: 1000 * 60 * 60 * 24 * 7 * 2,
     cookie: {
-        maxAge: 1000 * 60 * 60 * 24 * 7 * 2,
+        maxAge: 1000 * 60 * 60 * 24 * 7 * 2, // 2 weeks
     }
 }));
-
-app.use(cookieParser(process.env.SECRET));
-
 
 
 
 // Middleware
 const middleware = (req, res, next) => {
-    if (req.session.user) {
-        req.body = { ...req.body, uid: req.session.user };
-        req.header.user = req.session.user;
+    // check if user is logged in
+    // get user from cookie or session
+    console.log(req.session)
+    if (user) {
+        req.body = { ...req.body, uid: user };
         next();
-    } else {
+    }
+
+    else {
         res.status(401).json({ message: "Unauthorized" });
     }
 }
@@ -95,7 +96,7 @@ app.post('/sector', middleware, addSector);
 app.post('/sector/:id', middleware, updateSector);
 
 
-
+mongoose.set('strictQuery', true);
 // Connect to MongoDB
 mongoose.connect(DB, {
     useNewUrlParser: true,

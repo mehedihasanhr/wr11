@@ -2,11 +2,15 @@
 
 // login
 export const login = async (req, res) => {
-    // save to session
+    const user = "jhondoe";
+    const password = 123456;
+    // save to httpOnly cookie
     try {
-        const { user } = req.session;
-        req.session.user = !user ? Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) : user;
+        // save to session
+        req.session.user = user;
+
         return res.json({ message: "Logged in" });
+
     } catch (error) {
         return res.status(400).json({ message: error.message })
     }
