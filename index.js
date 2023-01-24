@@ -59,20 +59,15 @@ app.use(cookieParser());
 
 // Middleware
 const middleware = (req, res, next) => {
+    const { __user } = req.cookies;
 
-    const { _user } = req.cookies;
-    console.log(_user)
-
-    if (!_user) {
-        res.status(401).json({ message: "Unauthorized" });
+    if (!__user) {
+        return res.status(401).json({ message: "Unauthorized" });
     }
 
-
-    req.body = { ...req.body, uid: _user };
+    req.body = { ...req.body, uid: __user };
     next();
 }
-
-
 
 
 // Routes

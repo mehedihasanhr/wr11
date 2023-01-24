@@ -6,26 +6,15 @@ import Sector from "../model/Sector.js";
 export const addSector = async (req, res) => {
     const sector = req.body;
 
-
-
-    const oldData = await Sector.findOne({ uid: req.body.uid });
-    if (oldData) {
-        return;
-    }
-
-    if (!sector.name || sector.sectors.length === 0 || !sector.term)
-        return res.status(200).json({ message: "Please fill in all fields." })
-
-
-    const newSector = new Sector(sector);
     try {
+        const newSector = new Sector(sector);
         await newSector.save();
-        res.status(201).json(newSector);
+        return res.status(200).json(newSector);
     } catch (error) {
-        res.status(400).json({ message: error.message });
+        return res.status(404).json({ message: error.message });
     }
-}
 
+}
 
 export const updateSector = async (req, res) => {
     const { id } = req.params;
@@ -34,8 +23,6 @@ export const updateSector = async (req, res) => {
     if (!id) {
         return res.status(404).json({ message: "Sector not found" });
     }
-
-
     try {
         const updatedSector = await Sector.findOneAndUpdate({ _id: id, uid: req.body.uid }, sector, { new: true });
         return res.status(200).json(updatedSector);
@@ -47,15 +34,18 @@ export const updateSector = async (req, res) => {
 
 
 export const getSector = async (req, res) => {
+    const { uid } = req.body;
+
+
     try {
-        const uid = req.body;
-        if (!uid) return res.status(200);
-
         const sectors = await Sector.findOne({ uid });
-        if (!sectors) return res.status(200);
 
+        if (!sectors) {
+            console.log("No sectors found")
+            return;
+        }
         return res.status(200).json(sectors);
     } catch (error) {
-        return res.status(404).json({ message: error.message });
+        return res.status(404).json({ error: error.message });
     }
 }
