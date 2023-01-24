@@ -52,31 +52,23 @@ app.use(credential);
 app.use(cors(corOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser(process.env.SECRET));
-app.use(expressSession({
-    secret: process.env.SECRET,
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-        maxAge: 1000 * 60 * 60 * 24 * 7 * 2, // 2 weeks
-    }
-}));
+app.use(cookieParser());
+
 
 
 
 // Middleware
 const middleware = (req, res, next) => {
-    // check if user is logged in
-    // get user from cookie or session
-    const { user } = req.session;
-    if (user) {
-        req.body = { ...req.body, uid: user };
-        next();
-    }
 
-    else {
+    const { _user } = req.cookies;
+
+    if (!_user) {
         res.status(401).json({ message: "Unauthorized" });
     }
+
+
+    req.body = { ...req.body, uid: _user.user, token: _user.token };
+    next();
 }
 
 

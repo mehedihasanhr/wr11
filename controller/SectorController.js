@@ -6,7 +6,9 @@ import Sector from "../model/Sector.js";
 export const addSector = async (req, res) => {
     const sector = req.body;
 
-    const oldData = await Sector.findOne({ uid: req.session.user });
+
+
+    const oldData = await Sector.findOne({ uid: req.body.uid });
     if (oldData) {
         return;
     }
@@ -47,7 +49,6 @@ export const updateSector = async (req, res) => {
 export const getSector = async (req, res) => {
     try {
         const uid = req.body;
-        console.log(uid)
         if (!uid) return res.status(200);
 
         const sectors = await Sector.findOne({ uid });
